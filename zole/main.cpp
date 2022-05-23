@@ -26,9 +26,9 @@ int main() {
 
 	sf::Clock clock;
 
-	world.levelGen(); // sugeneruoja leveli
+	world.levelGen(); 
 
-	while (window.isOpen()) { // main loop	
+	while (window.isOpen()) { 
 
 		while (gameState == true) {
 
@@ -37,7 +37,7 @@ int main() {
 			sf::Time gameTime = clock.getElapsedTime();
 			float sec = gameTime.asSeconds();
 
-			player.playerAction(); // playerio judejimas
+			player.playerAction(); 
 			world.ageCheck();
 			world.levelUpdate();
 
