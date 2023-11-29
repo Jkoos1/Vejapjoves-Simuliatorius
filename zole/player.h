@@ -2,7 +2,7 @@
 
 #include "SFML/Graphics.hpp"
 #include <iostream>
-#include "mapGenerator.h"
+#include "MapUtils.h"
 #include "menu.h"
 
 class Player : public sf::Transformable {
@@ -22,7 +22,7 @@ public:
 	float inputDelayMovement = 180.0f; // spam preventionas
 	float inputDelayAction = 400.0f;
 
-	Gen level;
+	MapUtils map;
 	Menu menu;
 
 	sf::Sprite sprite;
@@ -90,40 +90,35 @@ public:
 				sprite.move(sf::Vector2f(speed, 0));
 				sf::Time elapsed = moveClock.restart();
 				playerSprite(0);
-				//std::cout << position.x << " " << position.y << std::endl;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && position.x > 0)
 			{
 				sprite.move(sf::Vector2f(-speed, 0));
 				sf::Time elapsed = moveClock.restart();
 				playerSprite(1);
-				//std::cout << position.x << " " << position.y << std::endl;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && position.y > 0)
 			{
 				sprite.move(sf::Vector2f(0, -speed));
 				sf::Time elapsed = moveClock.restart();
-				//std::cout << position.x << " " << position.y << std::endl;
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && position.y < 416)
 			{
 				sprite.move(sf::Vector2f(0, speed));
 				sf::Time elapsed = moveClock.restart();
-				//std::cout << position.x << " " << position.y << std::endl;
 			}
 		}
 
 		if (sec2 > inputDelayAction) {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) // tool change
 			{
-				if (titlePos == level.toolTitle) {
+				if (titlePos == map.toolTitle) {
 					if (tool == 0) tool = 1; // vejas, seklos
 					else tool = 0;
 					std::cout << "change";
 					sf::Time elapsed = actionClock.restart();
 				}
-				//std::cout << titlePos << " " << level.toolTitle << std::endl;
 			}
 		}
 
