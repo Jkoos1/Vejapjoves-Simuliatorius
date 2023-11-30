@@ -147,17 +147,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MenuUtils.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="TranslationUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MapUtils.h" />
-    <ClInclude Include="menu.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClCompile Include="Level.cpp" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Messages.h" />
+    <ClCompile Include="Player.cpp" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="titleMap.h" />
+    <ClCompile Include="TileMap.cpp" />
+    <ClInclude Include="TileMap.h" />
+    <ClInclude Include="TranslationUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="grassGame.rc" />
