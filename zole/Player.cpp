@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player() {
+Player::Player(int GRID_SIZE) : level(GRID_SIZE) {
 	changeSpriteDirection(0);
     reset();
 }
@@ -66,7 +66,6 @@ void Player::movePlayer() {
 
         if (moved) {
             sprite.move(newPosition);
-            std::cout << "Player position: " << sprite.getPosition().x << ", " << sprite.getPosition().y << std::endl;
             moveClock.restart();
         }
     }
@@ -82,8 +81,8 @@ void Player::performAction() {
 }
 
 void Player::updateTitlePos() {
-    int tempx = position.x != 0 ? position.x / TILE_SIZE : 0;
-    int tempy = position.y != 0 ? position.y / TILE_SIZE : 0;
+    int tempx = position.x / TILE_SIZE;
+    int tempy = position.y / TILE_SIZE;
     titlePos = tempx + tempy * TILES_X;
 }
 
@@ -99,4 +98,24 @@ void Player::reset() {
 	fuel = 140;
 	score = 0;
 	sprite.setPosition(0, 0);
+}
+
+void Player::interactWithLevel(Level& level) {
+    if (level.level[titlePos] == 0 || level.level[titlePos] == 2) {
+        if (level.level[titlePos] == 0 && tool == 0) {
+            level.level[titlePos] = 1;
+            level.levelAge[titlePos] = level.ageTimer[1];
+            score += 2;
+        }
+        if (level.level[titlePos] == 2 && tool == 1) {
+            level.level[titlePos] = 4;
+            level.levelAge[titlePos] = level.ageTimer[4];
+            score += 1;
+        }
+    }
+
+    if (level.fuelArr[titlePos] == 1) {
+        addFuel();
+        level.fuelArr[titlePos] = 0;
+    }
 }

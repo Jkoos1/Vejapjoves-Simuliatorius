@@ -11,7 +11,7 @@
 
 class Player : public sf::Transformable {
 public:
-    Player();
+    Player(int GRID_SIZE);
 
     void changeSpriteDirection(int input);
     void action();
@@ -21,13 +21,14 @@ public:
     void movePlayer();
     void performAction();
     void updateTitlePos();
+    void interactWithLevel(Level& level);
 
     const int MAX_X = 480;
     const int MIN_X = 0;
-    const int MAX_Y = 416;
+    const int MAX_Y = 480;
     const int MIN_Y = 0;
     const int TILE_SIZE = 32; 
-    const int TILES_X = 15;
+    const int TILES_X = 16;
 
     const float inputDelayMovement = 180.0f; 
     const float inputDelayAction = 400.0f;
@@ -35,12 +36,11 @@ public:
     const float speed = 32.0f;
     const int fuelConsumptionTime = 3;
     const int fuelConsumption = 10;
+    const int fuelAmount = 20;
 
     int titlePos;
     int score;
-
     int fuel;
-    const int fuelAmount = 20;
     int tool;
 
     Level level;

@@ -1,9 +1,12 @@
 #include "GameEngine.h"
 
-GameEngine::GameEngine() {
+GameEngine::GameEngine()
+    : window(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Game Title"),
+    player(GRID_SIZE),
+    level(GRID_SIZE),
+    menu() {
     isRunning = false;
     isGameActive = true;
-    window.create(sf::VideoMode(WINDOW_SIZE, WINDOW_SIZE), "Vejapjoves simuliatorius");
 }
 
 void GameEngine::initialize() {
@@ -46,10 +49,7 @@ void GameEngine::resetGame() {
 }
 
 void GameEngine::updateGame() {
-    if (player.fuel < 1) {
-        isGameActive = false;
-        return;
-    }
+    gameOver();
 
     sf::Time gameTime = clock.getElapsedTime();
     float sec = gameTime.asSeconds();
@@ -57,31 +57,22 @@ void GameEngine::updateGame() {
     player.action();
     level.ageCheck();
     level.levelUpdate();
-
-    if (level.level[player.titlePos] == 0 || level.level[player.titlePos] == 2) {
-        if (level.level[player.titlePos] == 0 && player.tool == 0) {
-            level.level[player.titlePos] = 1;
-            level.levelAge[player.titlePos] = level.ageTimer[1];
-            player.score += 2;
-        }
-        if (level.level[player.titlePos] == 2 && player.tool == 1) {
-            level.level[player.titlePos] = 4; 
-            level.levelAge[player.titlePos] = level.ageTimer[4];
-            player.score += 1;
-        }
-    }
-
-    if (level.fuelArr[player.titlePos] == 1) {
-        player.addFuel();
-        level.fuelArr[player.titlePos] = 0;
-    }
+    player.interactWithLevel(level);
 }
 
 void GameEngine::render() {
     window.clear();
-    window.draw(level.map);
+    window.draw(level.titleMap);
     window.draw(level.fMap);
     window.draw(player.sprite);
     menu.draw(window, player.tool, player.fuel, player.score, isGameActive, player.titlePos);
     window.display();
+}
+
+
+void GameEngine::gameOver(){
+    if (player.fuel < 1) {
+        isGameActive = false;
+        return;
+    }
 }

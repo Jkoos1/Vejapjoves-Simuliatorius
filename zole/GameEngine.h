@@ -16,12 +16,14 @@ public:
     void run();        
     void shutdown();   
     void resetGame();
+    void gameOver();
 
 private:
     bool isRunning;    
     bool isGameActive;    
 
     const int WINDOW_SIZE = 512;
+    const int GRID_SIZE = WINDOW_SIZE;
     const int FRAMERATE_LIMIT = 60;
 
     sf::RenderWindow window;

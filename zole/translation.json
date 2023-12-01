@@ -3,12 +3,16 @@
     "gameTitle": "Lawnmower Game",
     "lawnmower": "Lawnmover",
     "tractor": "Tractor",
-    "space": "Space"
+    "space": "Space ",
+    "score": "Score: ",
+    "gameEndMessage": "Game over. Do you want to continue? Y/N"
   },
   "lt": {
     "gameTitle": "Žoliapjovės žaidimas",
     "lawnmower": "Žoliapjovė",
     "tractor": "Traktorius",
-    "space": "Tarpas"
+    "space": "Tarpas ",
+    "score": "Taškai: ",
+    "gameEndMessage": "Žaidimo pabaiga. Ar norite tęsti? Y/N"
   }
 }

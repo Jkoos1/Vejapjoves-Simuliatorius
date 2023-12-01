@@ -10,20 +10,21 @@
 
 class Level {
 public:
-    Level();
+    Level(int gridSize);
+    ~Level();
 
     void generateMap();
     void levelUpdate();
     void ageCheck();
 
-    TileMap map;
+    TileMap titleMap;
     TileMap fMap;
 
-    int level[256] = {};
-    int levelAge[256] = {};  
+    int* level;    
+    int* levelAge; 
     int toolTitle = 0;
 
-    int fuelArr[256] = {};
+    int* fuelArr;  
     int fuelSpawnRate = 6;
 
     std::map<int, int> ageTimer;
@@ -33,6 +34,7 @@ private:
     sf::Texture fuelTexture;
     sf::Clock ageClock;
     sf::Clock fuelClock;
+    int gridSize; 
 };
 
 #endif // LEVEL_H
